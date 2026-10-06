@@ -18,7 +18,7 @@
 
 ## 楽天アフィリエイトID
 
-`assets/config.js` の `rakutenAffiliateId` が空のあいだは通常の楽天市場リンクを出し、広告の表示（`data-ad-note`）も隠します。IDを入れるときは、楽天アフィリエイトの管理画面で検索ページのリンクを1本作り、`index.html` の `affiliate()` が組み立てるURLと同じ形か確かめてください。
+`assets/config.js` の `rakutenFindLink` には、楽天アフィリエイトの管理画面で生成したリンクを編集せずにそのまま入れます（ガイドラインでリンクの編集は禁止）。`rakutenAffiliateId` が空のあいだは広告の表示（`data-ad-note`）を隠します。
 
 ## アクセス解析
 

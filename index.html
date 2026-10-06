@@ -84,7 +84,7 @@
   const CFG = window.SITE_CONFIG;
   const C = window.KaimawariCalc;
   const STORAGE_KEY = "kaimawari-v1";
-  const SEARCH_URL = "https://search.rakuten.co.jp/search/mall/" + encodeURIComponent("1000円ポッキリ 送料無料") + "/";
+  const SEARCH_URL = "https://search.rakuten.co.jp/search/mall/1000%E5%86%86%E3%83%9D%E3%83%83%E3%82%AD%E3%83%AA%2B%E9%80%81%E6%96%99%E7%84%A1%E6%96%99/";
   const TAX_RATES = [10, 8];
   const EDIT_EVENT = "calc-edit";
   const CLICK_EVENT = "rakuten-click";
@@ -120,12 +120,6 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...state, campaignBase: CAMPAIGN_BASE })); } catch (e) { /* 保存できなくても計算は続ける */ }
   }
   let state = load();
-
-  function affiliate(url) {
-    const id = CFG.rakutenAffiliateId;
-    if (!id) return url;
-    return "https://hb.afl.rakuten.co.jp/hgc/" + id + "/?pc=" + encodeURIComponent(url) + "&m=" + encodeURIComponent(url);
-  }
 
   function campaign() {
     const c = state.campaign;
@@ -211,7 +205,7 @@
     document.getElementById(id).addEventListener("input", (e) => { state.campaign[key] = e.target.value; renderResult(); save(); track(EDIT_EVENT); });
   }
   const link = document.getElementById("find-link");
-  link.href = affiliate(SEARCH_URL);
+  link.href = CFG.rakutenFindLink || SEARCH_URL;
   link.addEventListener("click", () => track(CLICK_EVENT));
 
   renderAll();
