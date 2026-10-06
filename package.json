@@ -1,0 +1,5 @@
+{
+  "name": "kaimawari-calc",
+  "private": true,
+  "scripts": { "test": "node --test test/calc.test.js" }
+}
