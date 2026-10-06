@@ -10,6 +10,10 @@
     }
   };
   if (!cfg.goatcounterCode) return;
+  const prefix = cfg.goatcounterPathPrefix || "";
+  if (prefix && !(cfg.legacyHosts || []).includes(location.hostname)) {
+    window.goatcounter = Object.assign(window.goatcounter || {}, { path: function (p) { return prefix + p; } });
+  }
   const s = document.createElement("script");
   s.async = true;
   s.src = cfg.goatcounterScript;

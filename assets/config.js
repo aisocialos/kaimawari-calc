@@ -4,6 +4,12 @@
 // rakutenFindLink: 「あと1店を探す」のリンク。楽天アフィリエイトの管理画面で生成したものをそのまま入れる（編集禁止）。空なら通常の検索ページ。
 // campaign: お買い物マラソンの条件（楽天市場の公式ページ 2026-10 開催分で確認）。
 window.SITE_CONFIG = {
+  // 公開先。旧URL（GitHub Pages）で開かれたら siteOrigin へ移す
+  siteOrigin: "https://kaimawari.fynexus.com",
+  legacyHosts: ["aisocialos.github.io"],
+  legacyPathPrefix: "/kaimawari-calc",
+  // GoatCounter は salon-roi と共用のため、このサイトのパスに付ける接頭辞
+  goatcounterPathPrefix: "/kaimawari-calc",
   goatcounterCode: "salon-roi",
   goatcounterScript: "https://gc.zgo.at/count.v4.js",
   goatcounterIntegrity: "sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+",

@@ -2,7 +2,11 @@
 
 楽天市場のお買い物マラソンで、買う予定の商品とショップから達成ショップ数・倍率・買いまわりポイントを計算する無料ツールです。あと1店足すと何ポイント増えるか、上限まであと何円買えるかも表示します。静的ページだけで動き、入力内容はブラウザの外に送信されません。
 
-公開URL：https://aisocialos.github.io/kaimawari-calc/
+公開URL：https://kaimawari.fynexus.com/ （Cloudflare Pages。旧URL https://aisocialos.github.io/kaimawari-calc/ は新URLへ移るだけ）
+
+## デプロイ
+
+Cloudflare Pages の `kaimawari-calc` プロジェクトへ、サイトのファイルだけを `wrangler pages deploy` で上げる。GitHub Pages は旧URLからの移動用に残している。
 
 ## ファイル
 
