@@ -6,13 +6,15 @@
 })(typeof self !== "undefined" ? self : this, function () {
   const PERCENT = 100;
   const DECIMAL_BASE = 10n;
-  // 数を文字にしたときの形：整数部・小数部・指数（1e-7 など）
-  const NUMBER_PARTS = /^(\d+)(?:\.(\d+))?(?:e([+-]\d+))?$/;
+  // 入力とポイント数の上限。これより大きい整数は正確に表せないので、上限として扱う
+  const MAX_INPUT = Number.MAX_SAFE_INTEGER;
+  // 数を文字にしたときの形：整数部・小数部・指数（1e-7 など。上限があるので指数は負だけ）
+  const NUMBER_PARTS = /^(\d+)(?:\.(\d+))?(?:e-(\d+))?$/;
 
-  // 0 以上の有限の数にする。それ以外は 0
+  // 0 以上・上限以下の有限の数にする。負の数・数でないものは 0
   function nonNegative(value) {
     const n = Number(value);
-    return Number.isFinite(n) && n > 0 ? n : 0;
+    return Number.isFinite(n) && n > 0 ? Math.min(n, MAX_INPUT) : 0;
   }
 
   // 金額を 0 以上の整数（円）にする
@@ -24,22 +26,20 @@
   function toScaled(value) {
     const m = NUMBER_PARTS.exec(String(nonNegative(value)));
     const frac = m[2] || "";
-    const decimals = frac.length - Number(m[3] || 0);
-    const digits = BigInt(m[1] + frac);
-    return decimals >= 0 ? { digits, decimals } : { digits: digits * DECIMAL_BASE ** BigInt(-decimals), decimals: 0 };
+    return { digits: BigInt(m[1] + frac), decimals: frac.length + Number(m[3] || 0) };
   }
 
   // 還元率（%）でもらえるポイント。1ポイント未満は切り捨て
   function pointsByRate(price, ratePercent) {
     const rate = toScaled(ratePercent);
-    return Number((BigInt(toYen(price)) * rate.digits) / (BigInt(PERCENT) * DECIMAL_BASE ** BigInt(rate.decimals)));
+    return nonNegative(Number((BigInt(toYen(price)) * rate.digits) / (BigInt(PERCENT) * DECIMAL_BASE ** BigInt(rate.decimals))));
   }
 
-  // 「unitYen 円ごとに pointsPerUnit ポイント」でもらえるポイント
+  // 「unitYen 円ごとに pointsPerUnit ポイント」でもらえるポイント。unitYen は整数の円（1円未満は 0 ポイント）
   function pointsByUnit(price, unitYen, pointsPerUnit) {
-    const unit = nonNegative(unitYen);
+    const unit = toYen(unitYen);
     if (unit === 0) return 0;
-    return Math.floor(toYen(price) / unit) * nonNegative(pointsPerUnit);
+    return nonNegative(Math.floor(toYen(price) / unit) * nonNegative(pointsPerUnit));
   }
 
   // ポイント分を引いた実質価格。0 より下にはしない
@@ -69,5 +69,5 @@
       effectiveRate: rate, discountEquivalent: discountEquivalent(rate) };
   }
 
-  return { nonNegative, toYen, toScaled, pointsByRate, pointsByUnit, effectivePrice, effectiveRate, discountEquivalent, summary };
+  return { MAX_INPUT, nonNegative, toYen, toScaled, pointsByRate, pointsByUnit, effectivePrice, effectiveRate, discountEquivalent, summary };
 });

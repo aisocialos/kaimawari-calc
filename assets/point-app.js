@@ -9,8 +9,9 @@
   const pct = (n) => n.toFixed(CFG.rateDigits) + "%";
   const track = (name) => { if (typeof window.trackEvent === "function") window.trackEvent(name); };
 
+  const YEN_FIELDS = ["price", "unitYen"];
   // 金額は整数の円、ほかは 0 以上の数
-  const toNumber = (id, v) => (id === "price" ? P.toYen(v) : P.nonNegative(v));
+  const toNumber = (id, v) => (YEN_FIELDS.includes(id) ? P.toYen(v) : P.nonNegative(v));
   // 選択肢にない値は初期値に戻す
   const inOptions = (id, v) => [...document.getElementById(id).options].some((o) => o.value === v);
   function load() {

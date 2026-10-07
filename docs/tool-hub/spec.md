@@ -56,13 +56,15 @@
 
 ### point.js
 
+所有数值入参的上限是 `Number.MAX_SAFE_INTEGER`，超过的按上限算；返回的积分数也不超过这个上限。价格和「何円ごとに」先舍去小数成整数日元。这样任何有限输入都不会让中间结果溢出。
+
 `pointsByRate(price: number, ratePercent: number): number`
 - 处理：`floor(price*ratePercent/100)`。
 - 依赖：无外部依赖。
 - 验收：`(1980,1)=19`；`(1980,0.5)=9`；`(10000,10)=1000`；负数或非数返回 0。
 
 `pointsByUnit(price: number, unitYen: number, pointsPerUnit: number): number`
-- 处理：`floor(price/unitYen)*pointsPerUnit`；`unitYen<=0` 返回 0。
+- 处理：`floor(price/unitYen)*pointsPerUnit`；`unitYen` 取整后为 0 时返回 0。
 - 依赖：无外部依赖。
 - 验收：`(1980,200,1)=9`；`(199,200,1)=0`；`(1000,100,1)=10`；`(1000,0,1)=0`。
 
