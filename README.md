@@ -17,6 +17,7 @@ Cloudflare Pages の `kaimawari-calc` プロジェクトへ、サイトのファ
 - `tax.html`、`assets/tax.js`：消費税の税込・税抜換算（10%と8%）
 - `point.html`、`assets/point.js`：ポイント還元率と実質価格
 - `discount.html`、`assets/discount.js`：割引率・何割引・クーポンの重ねがけ
+- `assets/find-link.js`：`#find-link` に `rakutenFindLink` を入れ、クリックを数える（`/point`、`/discount`）
 - `assets/config.js`：GoatCounter のコード、楽天アフィリエイトID、キャンペーン条件（上限・1店の条件・最大倍率）
 - `articles/`：解説記事2本
 - `privacy.html`：入力データ、アクセス解析、広告の扱い

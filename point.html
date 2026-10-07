@@ -14,6 +14,7 @@
 <script src="assets/config.js?v=2"></script>
 <script src="assets/redirect.js"></script>
 <script src="assets/analytics.js"></script>
+<script src="assets/ad-note.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "ポイント還元率 計算（実質価格）", "url": "https://kaimawari.fynexus.com/point", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "inLanguage": "ja", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}</script>
 <script src="assets/point.js"></script>
 </head>
@@ -22,6 +23,7 @@
   <nav class="crumb"><a href="./#tools">ツール一覧</a></nav>
   <h1>ポイント還元率 計算｜もらえるポイントと実質価格</h1>
   <p class="lead">価格とポイントの付き方を入れると、もらえるポイント、ポイント分を引いた実質価格、端数を引いた実際の還元率、値引きに直した割合を出します。登録は不要で、無料です。入力はこのブラウザの中だけで計算され、送信されません。</p>
+  <p class="note" data-ad-note hidden>当ページは広告（楽天アフィリエイト）を含みます。</p>
 
   <section class="card" aria-labelledby="in-title">
     <h2 id="in-title">条件</h2>
@@ -43,6 +45,12 @@
     <div class="advice" id="advice" aria-live="polite"></div>
   </section>
 
+  <section class="card find">
+    <h2>楽天市場で商品を探す</h2>
+    <p>楽天市場で、1,000円（税込）前後・送料無料の商品を探せます。ポイントの付き方は、商品ページで確認してください。</p>
+    <p><a id="find-link" class="cta" data-click-event="point-find-click" href="https://search.rakuten.co.jp/search/mall/1000%E5%86%86%E3%83%9D%E3%83%83%E3%82%AD%E3%83%AA%2B%E9%80%81%E6%96%99%E7%84%A1%E6%96%99/" rel="nofollow sponsored noopener" target="_blank">楽天市場で「1000円ポッキリ 送料無料」を探す</a> <span class="pr" data-ad-note hidden>PR</span></p>
+  </section>
+
   <h2>計算のしかた</h2>
   <div class="card note">
     <p>還元率で決まる場合：ポイント ＝ 金額 × 還元率 ÷ 100。1ポイント未満は切り捨てています。</p>
@@ -62,9 +70,11 @@
   </ul>
 
   <footer>
+    <p data-ad-note hidden>当サイトは楽天アフィリエイトを利用しています。リンク先での購入により当サイトが報酬を受け取ることがあります。</p>
     <p>楽天、楽天市場、楽天カード、楽天モバイルは楽天グループ株式会社またはそのグループ会社の商標または登録商標です。当サイトは楽天グループ株式会社とは関係ありません。 <a href="privacy">プライバシーについて</a></p>
   </footer>
 </main>
 <script src="assets/point-app.js"></script>
+<script src="assets/find-link.js"></script>
 </body>
 </html>
