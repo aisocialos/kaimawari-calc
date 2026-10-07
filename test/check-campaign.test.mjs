@@ -17,5 +17,5 @@ test("読み取れなければ ng", () => {
   assert.equal(compare(parsePage("<p>no data</p>"), { pointCap: 7000 }).ok, false);
 });
 test("config.js から campaign を読む", () => {
-  assert.equal(readConfigCampaign('window.SITE_CONFIG = { campaign: { pointCap: 7000 } };').pointCap, 7000);
+  assert.equal(readConfigCampaign('window.SITE_CONFIG = { campaigns: { marathon: { pointCap: 7000 } } };').pointCap, 7000);
 });

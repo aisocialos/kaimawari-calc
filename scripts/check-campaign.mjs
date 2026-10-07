@@ -7,7 +7,7 @@ const PAGE_URL = "https://event.rakuten.co.jp/campaign/point-up/marathon/";
 export function readConfigCampaign(source) {
   const sandbox = { window: {} };
   vm.runInNewContext(source, sandbox);
-  return sandbox.window.SITE_CONFIG.campaign;
+  return sandbox.window.SITE_CONFIG.campaigns.marathon;
 }
 
 export function parsePage(html) {

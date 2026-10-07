@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>お買い物マラソン 買いまわり計算機｜あと1店でいくら増える？上限まであといくら？</title>
-<meta name="description" content="買う商品とショップを入れると、達成ショップ数・倍率・もらえる買いまわりポイントを計算。あと1店買い足すと何ポイント増えるか、上限7,000ptまであと何円買えるかも表示します。入力はブラウザ内だけで計算。">
-<link rel="canonical" href="https://kaimawari.fynexus.com/">
+<title>楽天スーパーSALE 買いまわり計算機｜あと1店でいくら増える？上限まであといくら？</title>
+<meta name="description" content="楽天スーパーSALEで買う商品とショップを入れると、達成ショップ数・倍率・買いまわりポイントを計算。あと1店で何ポイント増えるか、上限まであと何円買えるかも表示します。入力はブラウザ内だけで計算。">
+<link rel="canonical" href="https://kaimawari.fynexus.com/supersale">
 <meta property="og:type" content="website">
-<meta property="og:title" content="お買い物マラソン 買いまわり計算機">
+<meta property="og:title" content="楽天スーパーSALE 買いまわり計算機">
 <meta property="og:description" content="あと1店でいくら増えるか、上限まであと何円買えるかを計算する無料ツール。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%23187a6a%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/site.css">
@@ -15,12 +15,13 @@
 <script src="assets/redirect.js"></script>
 <script src="assets/analytics.js"></script>
 <script src="assets/ad-note.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "お買い物マラソン 買いまわり計算機", "url": "https://kaimawari.fynexus.com/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "inLanguage": "ja", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "楽天スーパーSALE 買いまわり計算機", "url": "https://kaimawari.fynexus.com/supersale", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "inLanguage": "ja", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}</script>
 <script src="assets/calc.js"></script>
 </head>
-<body data-campaign="marathon">
+<body data-campaign="supersale">
 <main>
-  <h1>お買い物マラソン 買いまわり計算機</h1>
+  <h1>楽天スーパーSALE 買いまわり計算機</h1>
+  <p class="note">お買い物マラソン用は<a href="./">こちら</a>。スーパーSALEのショップ買いまわりは、1ショップ1,000円（税込）以上・ショップ数に応じて倍率が上がる仕組みがマラソンと同じです（楽天市場 公式ガイド）。</p>
   <p class="lead">買う予定の商品とショップを入れると、達成ショップ数・倍率・買いまわりポイントを計算します。<strong>あと1店買い足すと何ポイント増えるか</strong>と、<strong>上限まであと何円買えるか</strong>も出します。入力はこのブラウザの中だけで計算され、送信されません。</p>
   <p class="note" data-ad-note hidden>当ページは広告（楽天アフィリエイト）を含みます。</p>
 
@@ -43,7 +44,7 @@
         <div><label for="minShop">1ショップの条件（税込・円）</label><input id="minShop" type="number" min="0" step="100"></div>
         <div><label for="maxMul">最大倍率（通常1倍を含む）</label><input id="maxMul" type="number" min="1" step="1"></div>
       </div>
-      <p class="note">初期値は 2026年10月4日〜9日開催分の公式ページの条件です。開催回によって上限が違うことがあるので、エントリーページで確認してください。</p>
+      <p class="note">初期値は上限7,000ポイント・最大10倍です（2026年9月開催分の報道による値で、楽天市場の公式ページでは確認できていません）。上限は開催ごとに変わり、ラクマでの購入で倍率がさらに1倍上がる回もあります。エントリーページで今回の条件を確認して書き換えてください。</p>
     </details>
   </section>
 
@@ -65,13 +66,13 @@
     <p>達成ショップ数：期間中の購入金額（税込・送料別・クーポン適用後）がショップごとに 1,000円以上になったショップの数。</p>
     <p>倍率：達成ショップ数と同じ（1ショップは通常の1倍のみ、10ショップ以上は10倍）。</p>
     <p>買いまわりポイント ＝ 1,000円以上になったショップでの購入金額（税抜・送料別・クーポン適用後）×（倍率 − 1）%、上限あり。1,000円未満のショップの分は対象外として計算しています。</p>
-    <p>買いまわりポイントは期間限定ポイントで、使える期限があります（2026年10月開催分は12月31日まで）。</p>
+    <p>買いまわりポイントは期間限定ポイントです。使える期限は開催ごとに違うので、エントリーページで確認してください。</p>
     <p>通常ポイント（1倍）、SPU、ショップ独自のポイントアップは含めていません。実際の付与は注文ごとの端数処理や対象外商品で変わるため、目安としてお使いください。エントリーが必要です。</p>
   </div>
 
   <h2>あわせて読む</h2>
   <ul class="reads">
-    <li><a href="supersale">楽天スーパーSALE 用の計算機</a></li>
+    <li><a href="./">お買い物マラソン 用の計算機</a></li>
     <li><a href="spu-card">楽天カード・楽天モバイルで楽天市場のポイントは毎月いくら増える？</a></li>
     <li><a href="articles/cap">上限7,000ポイントはいくら買えば届く？ 店舗数別の早見表</a></li>
     <li><a href="articles/next-shop">「あと1店」は得？ 1,000円の商品を足したときに増えるポイントの計算</a></li>

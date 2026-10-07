@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>楽天カード・楽天モバイルで楽天市場のポイントは毎月いくら増える？ SPU計算機</title>
+<meta name="description" content="楽天市場で毎月いくら買うかを入れると、楽天カード・楽天モバイルのSPUで増えるポイントを項目ごとに計算。月間上限に届く購入額も表示します。入力はブラウザ内だけで計算。">
+<link rel="canonical" href="https://kaimawari.fynexus.com/spu-card">
+<meta property="og:type" content="website">
+<meta property="og:title" content="楽天カード・楽天モバイルで楽天市場のポイントは毎月いくら増える？">
+<meta property="og:description" content="SPUで増えるポイントと月間上限に届く購入額を計算する無料ツール。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%23187a6a%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/config.js"></script>
+<script src="assets/redirect.js"></script>
+<script src="assets/analytics.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "楽天カード・楽天モバイル SPU計算機", "url": "https://kaimawari.fynexus.com/spu-card", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "inLanguage": "ja", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}</script>
+<script src="assets/spu.js"></script>
+</head>
+<body>
+<main>
+  <nav class="crumb"><a href="./">お買い物マラソン 買いまわり計算機</a></nav>
+  <h1>楽天カード・楽天モバイルで楽天市場のポイントは毎月いくら増える？</h1>
+  <p class="lead">楽天市場で毎月いくら買うかと、使っているサービスを選ぶと、SPU（スーパーポイントアッププログラム）で増えるポイントを項目ごとに計算します。月間上限に届く購入額も出します。入力はこのブラウザの中だけで計算され、送信されません。</p>
+  <p class="note" data-spu-ad hidden>当ページは広告（楽天アフィリエイト）を含みます。</p>
+
+  <section class="card" aria-labelledby="in-title">
+    <h2 id="in-title">条件</h2>
+    <div class="grid">
+      <div><label for="spend">楽天市場での毎月の購入額（税込・送料別・クーポン適用後、円）</label><input id="spend" type="number" min="0" step="1000" inputmode="numeric"></div>
+      <div><label for="card">楽天カード</label>
+        <select id="card"><option value="none">持っていない</option><option value="normal">楽天カード（プレミアム以外）</option><option value="premium">楽天プレミアムカード</option></select></div>
+      <div><label><input id="mobile" type="checkbox"> 楽天モバイルを契約している</label></div>
+    </div>
+    <p class="note">初期値は入力例です。税抜の金額は税率10%で計算しています。食品など8%の商品が多いと、少し多めに出ます。</p>
+  </section>
+
+  <section aria-labelledby="out-title">
+    <h2 id="out-title">結果</h2>
+    <div class="kpis" id="kpis"></div>
+    <div class="advice" id="advice" aria-live="polite"></div>
+    <div class="card table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th class="n">倍率</th><th class="n">月間上限</th><th class="n">今月のポイント</th><th class="n">上限に届く購入額</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card find">
+    <h2>申し込みページ</h2>
+    <p><a id="card-link" class="cta" href="https://www.rakuten-card.co.jp/" rel="nofollow sponsored noopener" target="_blank">楽天カードの公式ページを見る</a> <span class="pr" data-pr-for="card-link" hidden>PR</span></p>
+    <p><a id="mobile-link" class="cta" href="https://network.mobile.rakuten.co.jp/" rel="nofollow sponsored noopener" target="_blank">楽天モバイルの公式ページを見る</a> <span class="pr" data-pr-for="mobile-link" hidden>PR</span></p>
+    <p class="note">料金・審査・特典の条件は、各公式ページで確認してください。</p>
+  </section>
+
+  <h2>計算のしかた</h2>
+  <div class="card note">
+    <p>楽天モバイル：対象プラン（Rakuten最強プランなど）の契約とエントリーで +4倍、月間上限 2,000ポイント。税抜5万円で上限に届きます。楽天カードで払う必要はありません。</p>
+    <p>楽天カード 通常分：楽天カードで払った楽天市場の購入額（税込・送料込み）の +1倍、上限なし。</p>
+    <p>楽天カード 特典分：楽天カードで払った楽天市場の購入額（税抜・送料別）の +1倍、月間上限はプレミアムカード 5,000、それ以外 1,000ポイント。</p>
+    <p>楽天ポイントで払った分は、カードの対象金額から除かれます。楽天ふるさと納税はSPUの対象外です。楽天カード 特典分と楽天モバイルの分は期間限定ポイントで、通常分は通常のポイントです。</p>
+    <p>毎月末日までに条件を満たせば、その月の楽天市場での買い物全体に倍率が付きます。通常ポイント（1倍分）、楽天銀行などそのほかのSPU項目、一部の会員向けに試験的に行われている「SPUボーナス」は含めていません。楽天市場 SPU ページ（2026年7月1日更新）で確認した条件です。<a href="https://event.rakuten.co.jp/campaign/point-up/everyday/point/" rel="nofollow noopener" target="_blank">公式ページ</a></p>
+  </div>
+
+  <h2>あわせて読む</h2>
+  <ul class="reads">
+    <li><a href="./">お買い物マラソン 買いまわり計算機</a></li>
+    <li><a href="supersale">楽天スーパーSALE 買いまわり計算機</a></li>
+    <li><a href="articles/spu">SPUと買いまわりの上限は別？ 7,000ポイント上限の範囲</a></li>
+  </ul>
+
+  <footer>
+    <p data-spu-ad hidden>当サイトは楽天アフィリエイトを利用しています。リンク先での申し込みにより当サイトが報酬を受け取ることがあります。</p>
+    <p>楽天、楽天市場、楽天カード、楽天モバイルは楽天グループ株式会社またはそのグループ会社の商標または登録商標です。当サイトは楽天グループ株式会社とは関係ありません。 <a href="privacy">プライバシーについて</a></p>
+  </footer>
+</main>
+<script src="assets/spu-app.js"></script>
+</body>
+</html>

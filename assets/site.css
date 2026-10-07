@@ -79,3 +79,5 @@ footer { margin-top: 40px; color: var(--muted); font-size: .8rem; border-top: 1p
   table.items input[data-k="price"] { width: 100%; }
   table.items button { min-height: 40px; width: 100%; padding: 0; }
 }
+
+input[type="checkbox"] { width: auto; margin-right: 6px; }
