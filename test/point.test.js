@@ -68,6 +68,15 @@ test("値引き換算：10%還元は約9.09%引き、100%還元は50%引き", ()
   assert.equal(P.discountEquivalent(0), 0);
 });
 
+test("とても大きい還元率でも Infinity にならない", () => {
+  assert.equal(P.discountEquivalent(1e307), 100);
+  assert.equal(P.effectiveRate(100, 1e307, 1), 1e307);
+  const s = P.summary({ price: 100, method: "rate", rate: 1e307, unitYen: 200, pointsPerUnit: 1, yenPerPoint: 1 });
+  assert.equal(s.effectiveRate, 1e307);
+  assert.equal(s.discountEquivalent, 100);
+  assert.equal(s.effectivePrice, 0);
+});
+
 test("まとめ：還元率と付与単位のどちらでも計算できる", () => {
   const u = P.summary({ price: 1980, method: "unit", rate: 1, unitYen: 200, pointsPerUnit: 1, yenPerPoint: 1 });
   assert.equal(u.points, 9);

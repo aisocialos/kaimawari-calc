@@ -47,16 +47,16 @@
     return Math.max(0, toYen(price) - nonNegative(points) * nonNegative(yenPerPoint));
   }
 
-  // 端数処理後の実際の還元率（%）
+  // 端数処理後の実際の還元率（%）。先に割ってから掛ける（大きい数で途中の値があふれないように）
   function effectiveRate(price, points, yenPerPoint) {
     const p = toYen(price);
-    return p === 0 ? 0 : (nonNegative(points) * nonNegative(yenPerPoint) * PERCENT) / p;
+    return p === 0 ? 0 : (nonNegative(points) / p) * PERCENT * nonNegative(yenPerPoint);
   }
 
   // 還元率 r% は、値引きに直すと r ÷（100 ＋ r）%
   function discountEquivalent(ratePercent) {
     const r = nonNegative(ratePercent);
-    return (r * PERCENT) / (PERCENT + r);
+    return (r / (PERCENT + r)) * PERCENT;
   }
 
   // 入力一式 → 結果一式。method: "rate"（還元率）| "unit"（○円ごとに○ポイント）
