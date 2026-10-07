@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポイント還元率 計算｜もらえるポイントと実質価格、値引きに直すと何%？</title>
+<meta name="description" content="価格と還元率（または「200円ごとに1ポイント」）を入れると、もらえるポイント・実質価格・端数を引いた実際の還元率・値引きに直した割合を計算。登録不要・無料。入力はブラウザ内だけで計算。">
+<link rel="canonical" href="https://kaimawari.fynexus.com/point">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ポイント還元率 計算｜もらえるポイントと実質価格">
+<meta property="og:description" content="もらえるポイント、実質価格、値引きに直した割合を出す無料ツール。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%23187a6a%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/config.js"></script>
+<script src="assets/redirect.js"></script>
+<script src="assets/analytics.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "ポイント還元率 計算（実質価格）", "url": "https://kaimawari.fynexus.com/point", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "inLanguage": "ja", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}</script>
+<script src="assets/point.js"></script>
+</head>
+<body>
+<main>
+  <nav class="crumb"><a href="./#tools">ツール一覧</a></nav>
+  <h1>ポイント還元率 計算｜もらえるポイントと実質価格</h1>
+  <p class="lead">価格とポイントの付き方を入れると、もらえるポイント、ポイント分を引いた実質価格、端数を引いた実際の還元率、値引きに直した割合を出します。登録は不要で、無料です。入力はこのブラウザの中だけで計算され、送信されません。</p>
+
+  <section class="card" aria-labelledby="in-title">
+    <h2 id="in-title">条件</h2>
+    <div class="grid">
+      <div><label for="price">ポイントの対象になる金額（円）</label><input id="price" type="number" min="0" step="1" inputmode="numeric"></div>
+      <div><label for="method">ポイントの付き方</label>
+        <select id="method"><option value="rate">還元率（%）で決まる</option><option value="unit">○円ごとに○ポイント</option></select></div>
+      <div data-method="rate"><label for="rate">還元率（%）</label><input id="rate" type="number" min="0" step="0.1" inputmode="decimal"></div>
+      <div data-method="unit"><label for="unitYen">何円ごとに</label><input id="unitYen" type="number" min="1" step="1" inputmode="numeric"></div>
+      <div data-method="unit"><label for="pointsPerUnit">何ポイント</label><input id="pointsPerUnit" type="number" min="0" step="1" inputmode="decimal"></div>
+      <div><label for="yenPerPoint">1ポイントの価値（円）</label><input id="yenPerPoint" type="number" min="0" step="0.1" inputmode="decimal"></div>
+    </div>
+    <p class="note">初期値は入力例です。ポイントの対象が税込か税抜か、送料を含むかは、店やカードによって違います。</p>
+  </section>
+
+  <section aria-labelledby="out-title">
+    <h2 id="out-title">結果</h2>
+    <div class="kpis" id="kpis"></div>
+    <div class="advice" id="advice" aria-live="polite"></div>
+  </section>
+
+  <h2>計算のしかた</h2>
+  <div class="card note">
+    <p>還元率で決まる場合：ポイント ＝ 金額 × 還元率 ÷ 100。1ポイント未満は切り捨てています。</p>
+    <p>○円ごとに○ポイントの場合：ポイント ＝（金額 ÷ 単位）の整数部分 × ポイント数。200円ごとに1ポイントで1,980円払うと、1,800円分の9ポイントが付き、残りの180円には付きません。</p>
+    <p>実質価格 ＝ 金額 − ポイント × 1ポイントの価値。</p>
+    <p>値引きに直すと：還元率 r% は、r ÷（100 ＋ r）× 100% の値引きと同じです。10,000円払って1,000ポイントもらうと、11,000円分の買い物に10,000円払ったことになり、約9.09%引きです。もらったポイントを使い切る前提の数字です。</p>
+    <p>端数の扱い（切り捨て・四捨五入）や付与の時期は、店やカードによって違います。結果は目安としてお使いください。</p>
+  </div>
+
+  <h2>ほかのツール</h2>
+  <ul class="reads">
+    <li><a href="./">お買い物マラソン 買いまわり計算機</a></li>
+    <li><a href="supersale">楽天スーパーSALE 買いまわり計算機</a></li>
+    <li><a href="spu-card">楽天カード・楽天モバイル SPU計算機</a></li>
+    <li><a href="tax">消費税 計算（税込・税抜、10%と8%）</a></li>
+  </ul>
+
+  <footer>
+    <p>楽天、楽天市場、楽天カード、楽天モバイルは楽天グループ株式会社またはそのグループ会社の商標または登録商標です。当サイトは楽天グループ株式会社とは関係ありません。 <a href="privacy">プライバシーについて</a></p>
+  </footer>
+</main>
+<script src="assets/point-app.js"></script>
+</body>
+</html>

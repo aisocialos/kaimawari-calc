@@ -2,8 +2,21 @@
   "feature_slug": "tool-hub",
   "task_type": "feature",
   "current_stage": "unit",
-  "round_counts": { "prd": 0, "architecture": 0, "unit": { "tax": 3 }, "integration": 0, "full": 0 },
+  "round_counts": {
+    "prd": 0,
+    "architecture": 0,
+    "unit": {
+      "tax": 3,
+      "point": 5
+    },
+    "integration": 0,
+    "full": 0
+  },
   "max_rounds": 3,
-  "skip_review": { "prd": "单功能流程默认跳过", "architecture": "沿用 spu-card 的页面结构，没有新设计" },
-  "open_issues": []
+  "skip_review": {
+    "prd": "单功能流程默认跳过",
+    "architecture": "沿用 spu-card 的页面结构，没有新设计"
+  },
+  "open_issues": [],
+  "max_rounds_note": "point 第 3、4 轮仍有阻断且意见都已采纳，修复后继续加审"
 }
