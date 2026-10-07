@@ -29,6 +29,11 @@ window.SITE_CONFIG = {
     cardNormal: { key: "cardNormal", label: "楽天カード 通常分", rate: 1, cap: null, base: "taxIn" },
     cardBonus: { key: "cardBonus", label: "楽天カード 特典分", rate: 1, cap: { normal: 1000, premium: 5000 }, base: "taxEx" }
   },
+  // 消費税の換算（/tax）。rates は表に出す順。defaults は初めて開いたときの入力例
+  tax: {
+    rates: [{ rate: 10, label: "標準税率 10%" }, { rate: 8, label: "軽減税率 8%" }],
+    defaults: { amount: 1000, direction: "ex", mode: "floor" }
+  },
   campaigns: {
     // お買い物マラソン（2026年10月4日〜9日開催分の公式ページで確認）
     marathon: {
