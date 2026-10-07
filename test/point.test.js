@@ -17,6 +17,29 @@ test("還元率が小数でも1ポイントずれない", () => {
   assert.equal(P.pointsByRate(3000, 0.7), 21);
   assert.equal(P.pointsByRate(2000, 1.15), 23);
   assert.equal(P.pointsByRate(10000, 0.1 + 0.2), 30);
+  assert.equal(P.pointsByRate(10000, 0.9999), 99);
+  assert.equal(P.pointsByRate(1000000, 0.00001), 0);
+  assert.equal(P.pointsByRate(100000000, 1e-7), 0);
+  assert.equal(P.pointsByRate(1000000000, 1e-7), 1);
+  assert.equal(P.pointsByRate(100, 1e21), 1e21);
+});
+
+test("数を整数と小数の桁数に分ける", () => {
+  assert.deepEqual(P.toScaled(0.7), { digits: 7n, decimals: 1 });
+  assert.deepEqual(P.toScaled(10), { digits: 10n, decimals: 0 });
+  assert.deepEqual(P.toScaled(1e-7), { digits: 1n, decimals: 7 });
+  assert.deepEqual(P.toScaled(1.5e21), { digits: 1500000000000000000000n, decimals: 0 });
+  assert.deepEqual(P.toScaled(-3), { digits: 0n, decimals: 0 });
+});
+
+test("金額の小数は切り捨ててから、ポイントも実質価格も同じ金額で計算する", () => {
+  assert.equal(P.toYen(1980.9), 1980);
+  assert.equal(P.toYen(-1), 0);
+  assert.equal(P.effectivePrice(1980.9, 19, 1), 1961);
+  assert.equal(P.effectiveRate(1000.9, 100, 1), 10);
+  assert.equal(P.pointsByUnit(1999.9, 200, 1), 9);
+  const s = P.summary({ price: 1980.9, method: "rate", rate: 1, unitYen: 200, pointsPerUnit: 1, yenPerPoint: 1 });
+  assert.deepEqual([s.points, s.effectivePrice], [19, 1961]);
 });
 
 test("○円ごとに○ポイント：1,980円で200円ごとに1ptなら9pt", () => {

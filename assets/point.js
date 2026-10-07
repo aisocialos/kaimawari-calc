@@ -5,8 +5,9 @@
   else root.PointCalc = api;
 })(typeof self !== "undefined" ? self : this, function () {
   const PERCENT = 100;
-  // 還元率は小数第3位までを整数にして掛ける（0.1 × 3 のような誤差で1ポイントずれるのを防ぐ）
-  const RATE_SCALE = 1000;
+  const DECIMAL_BASE = 10n;
+  // 数を文字にしたときの形：整数部・小数部・指数（1e-7 など）
+  const NUMBER_PARTS = /^(\d+)(?:\.(\d+))?(?:e([+-]\d+))?$/;
 
   // 0 以上の有限の数にする。それ以外は 0
   function nonNegative(value) {
@@ -14,27 +15,41 @@
     return Number.isFinite(n) && n > 0 ? n : 0;
   }
 
+  // 金額を 0 以上の整数（円）にする
+  function toYen(value) {
+    return Math.floor(nonNegative(value));
+  }
+
+  // 0 以上の数を「整数 ÷ 10 の decimals 乗」の形にする（0.7 → 7 と 1）。小数の誤差を持ち込まないため
+  function toScaled(value) {
+    const m = NUMBER_PARTS.exec(String(nonNegative(value)));
+    const frac = m[2] || "";
+    const decimals = frac.length - Number(m[3] || 0);
+    const digits = BigInt(m[1] + frac);
+    return decimals >= 0 ? { digits, decimals } : { digits: digits * DECIMAL_BASE ** BigInt(-decimals), decimals: 0 };
+  }
+
   // 還元率（%）でもらえるポイント。1ポイント未満は切り捨て
   function pointsByRate(price, ratePercent) {
-    const scaled = Math.round(nonNegative(ratePercent) * RATE_SCALE);
-    return Math.floor((Math.floor(nonNegative(price)) * scaled) / (PERCENT * RATE_SCALE));
+    const rate = toScaled(ratePercent);
+    return Number((BigInt(toYen(price)) * rate.digits) / (BigInt(PERCENT) * DECIMAL_BASE ** BigInt(rate.decimals)));
   }
 
   // 「unitYen 円ごとに pointsPerUnit ポイント」でもらえるポイント
   function pointsByUnit(price, unitYen, pointsPerUnit) {
     const unit = nonNegative(unitYen);
     if (unit === 0) return 0;
-    return Math.floor(Math.floor(nonNegative(price)) / unit) * nonNegative(pointsPerUnit);
+    return Math.floor(toYen(price) / unit) * nonNegative(pointsPerUnit);
   }
 
   // ポイント分を引いた実質価格。0 より下にはしない
   function effectivePrice(price, points, yenPerPoint) {
-    return Math.max(0, nonNegative(price) - nonNegative(points) * nonNegative(yenPerPoint));
+    return Math.max(0, toYen(price) - nonNegative(points) * nonNegative(yenPerPoint));
   }
 
   // 端数処理後の実際の還元率（%）
   function effectiveRate(price, points, yenPerPoint) {
-    const p = nonNegative(price);
+    const p = toYen(price);
     return p === 0 ? 0 : (nonNegative(points) * nonNegative(yenPerPoint) * PERCENT) / p;
   }
 
@@ -54,5 +69,5 @@
       effectiveRate: rate, discountEquivalent: discountEquivalent(rate) };
   }
 
-  return { nonNegative, pointsByRate, pointsByUnit, effectivePrice, effectiveRate, discountEquivalent, summary };
+  return { nonNegative, toYen, toScaled, pointsByRate, pointsByUnit, effectivePrice, effectiveRate, discountEquivalent, summary };
 });
