@@ -46,10 +46,10 @@ label { display: block; font-size: .82rem; color: var(--muted); }
 .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
 .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; }
 .kpi span { font-size: .8rem; color: var(--muted); }
-.kpi b { font-size: 1.45rem; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.kpi b { font-size: 1.45rem; font-variant-numeric: tabular-nums; line-height: 1.3; overflow-wrap: anywhere; }
 .kpi small { color: var(--muted); font-size: .78rem; }
 .advice { display: grid; gap: 6px; margin-bottom: 12px; }
-.advice p { background: var(--chip); border-radius: 8px; padding: 10px 12px; margin: 0; }
+.advice p { background: var(--chip); border-radius: 8px; padding: 10px 12px; margin: 0; overflow-wrap: anywhere; }
 .advice .good { color: var(--good); }
 .advice .warn { color: var(--warn); }
 .shoplist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }

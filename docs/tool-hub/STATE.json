@@ -7,7 +7,7 @@
     "architecture": 0,
     "unit": {
       "tax": 3,
-      "point": 4
+      "point": 5
     },
     "integration": 0,
     "full": 0
@@ -18,5 +18,5 @@
     "architecture": "沿用 spu-card 的页面结构，没有新设计"
   },
   "open_issues": [],
-  "max_rounds_note": "point 第 3 轮仍有阻断且意见已采纳，修复后加审第 4 轮"
+  "max_rounds_note": "point 第 3、4 轮仍有阻断且意见都已采纳，修复后继续加审"
 }
