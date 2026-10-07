@@ -34,6 +34,11 @@ window.SITE_CONFIG = {
     rates: [{ rate: 10, label: "標準税率 10%" }, { rate: 8, label: "軽減税率 8%" }],
     defaults: { amount: 1000, direction: "ex", mode: "floor" }
   },
+  // ポイント還元率の計算（/point）。defaults は初めて開いたときの入力例。rateDigits は還元率の小数の桁数
+  point: {
+    defaults: { price: 1980, method: "rate", rate: 1, unitYen: 200, pointsPerUnit: 1, yenPerPoint: 1 },
+    rateDigits: 2
+  },
   campaigns: {
     // お買い物マラソン（2026年10月4日〜9日開催分の公式ページで確認）
     marathon: {
