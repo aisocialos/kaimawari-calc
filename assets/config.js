@@ -10,6 +10,8 @@ window.SITE_CONFIG = {
   legacyPathPrefix: "/kaimawari-calc",
   // GoatCounter は salon-roi と共用のため、このサイトのパスに付ける接頭辞
   goatcounterPathPrefix: "/kaimawari-calc",
+  // IndexNow（Bing など）に URL を通知するときの鍵。サイト直下の 6031b9d21850f3eba0813a93b2ea38ba.txt と同じ値
+  indexNowKey: "6031b9d21850f3eba0813a93b2ea38ba",
   goatcounterCode: "salon-roi",
   goatcounterScript: "https://gc.zgo.at/count.v4.js",
   goatcounterIntegrity: "sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+",
