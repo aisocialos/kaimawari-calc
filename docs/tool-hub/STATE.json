@@ -9,7 +9,8 @@
       "tax": 3,
       "point": 5,
       "discount": 2,
-      "config-cache": 1
+      "config-cache": 1,
+      "aff-link": 1
     },
     "integration": 0,
     "full": 0
