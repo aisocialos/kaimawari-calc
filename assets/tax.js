@@ -13,22 +13,31 @@
     return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
   }
 
-  // 税額の端数処理。mode: "floor"（切り捨て）| "round"（四捨五入）| "ceil"（切り上げ）
+  // 税率（%）を 0 以上の有限の数にする。それ以外は 0
+  function toRate(value) {
+    const n = Number(value);
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  }
+
+  // 税額の端数処理。mode: "floor"（切り捨て）| "round"（四捨五入）| "ceil"（切り上げ）。知らない mode は切り捨て
   function roundTax(amount, mode) {
-    return (ROUNDERS[mode] || ROUNDERS.floor)(amount);
+    const n = Number(amount);
+    if (!Number.isFinite(n) || n <= 0) return 0;
+    return (Object.hasOwn(ROUNDERS, mode) ? ROUNDERS[mode] : ROUNDERS.floor)(n);
   }
 
   // 税抜 → 税込
   function fromTaxExcluded(taxEx, rate, mode) {
     const ex = toYen(taxEx);
-    const tax = roundTax((ex * rate) / PERCENT, mode);
+    const tax = roundTax((ex * toRate(rate)) / PERCENT, mode);
     return { taxEx: ex, tax, taxIn: ex + tax };
   }
 
   // 税込 → 税抜
   function fromTaxIncluded(taxIn, rate, mode) {
     const inc = toYen(taxIn);
-    const tax = roundTax((inc * rate) / (PERCENT + rate), mode);
+    const r = toRate(rate);
+    const tax = roundTax((inc * r) / (PERCENT + r), mode);
     return { taxEx: inc - tax, tax, taxIn: inc };
   }
 
@@ -38,5 +47,5 @@
     return rates.map((rate) => ({ rate, ...fn(amount, rate, mode) }));
   }
 
-  return { toYen, roundTax, fromTaxExcluded, fromTaxIncluded, convert };
+  return { toYen, toRate, roundTax, fromTaxExcluded, fromTaxIncluded, convert };
 });

@@ -7,12 +7,16 @@
   const yen = (n) => n.toLocaleString("ja-JP") + "円";
   const track = (name) => { if (typeof window.trackEvent === "function") window.trackEvent(name); };
 
+  // 選択肢にない値は初期値に戻す
+  const inOptions = (id, v) => [...document.getElementById(id).options].some((o) => o.value === v);
   function load() {
-    try {
-      const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-      if (s) return { ...CFG.defaults, ...s };
-    } catch (e) { /* 読めないときは初期値を使う */ }
-    return { ...CFG.defaults };
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); } catch (e) { /* 読めないときは初期値を使う */ }
+    const d = CFG.defaults;
+    if (!s || typeof s !== "object") return { ...d };
+    return { amount: T.toYen(s.amount),
+      direction: inOptions("direction", s.direction) ? s.direction : d.direction,
+      mode: inOptions("mode", s.mode) ? s.mode : d.mode };
   }
   function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* 保存できなくても計算は続ける */ } }
   const state = load();

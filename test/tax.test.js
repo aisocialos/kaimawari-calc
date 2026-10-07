@@ -17,6 +17,23 @@ test("税額の端数：11.5円は切り捨て11・四捨五入12・切り上げ
   assert.equal(T.roundTax(11.5, "ceil"), 12);
   assert.equal(T.roundTax(11, "ceil"), 11);
   assert.equal(T.roundTax(11.5, "unknown"), 11);
+  assert.equal(T.roundTax(11.5, "__proto__"), 11);
+  assert.equal(T.roundTax(11.5, "constructor"), 11);
+});
+
+test("負の数・数でない値は 0 として扱う", () => {
+  assert.equal(T.roundTax(-5, "floor"), 0);
+  assert.equal(T.roundTax(NaN, "round"), 0);
+  assert.equal(T.roundTax(Infinity, "ceil"), 0);
+  assert.equal(T.toRate(-10), 0);
+  assert.equal(T.toRate("x"), 0);
+  assert.equal(T.toRate(Infinity), 0);
+  assert.equal(T.toRate(8), 8);
+  for (const rate of [-10, NaN, Infinity, "x"]) {
+    assert.deepEqual(T.fromTaxExcluded(1000, rate, "floor"), { taxEx: 1000, tax: 0, taxIn: 1000 });
+    assert.deepEqual(T.fromTaxIncluded(1000, rate, "floor"), { taxEx: 1000, tax: 0, taxIn: 1000 });
+  }
+  assert.deepEqual(T.fromTaxExcluded(-1000, 10, "floor"), { taxEx: 0, tax: 0, taxIn: 0 });
 });
 
 test("税抜 → 税込：1,000円は10%で1,100円、1,980円は8%で2,138円", () => {
