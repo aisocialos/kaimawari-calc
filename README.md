@@ -8,6 +8,8 @@
 
 Cloudflare Pages の `kaimawari-calc` プロジェクトへ、サイトのファイルだけを `wrangler pages deploy` で上げる。GitHub Pages は旧URLからの移動用に残している。
 
+公開ドメインでは JS と CSS がブラウザに4時間キャッシュされる（HTML はキャッシュされない）。`assets/config.js` に新しい項目を足したら、その項目を読むページの `assets/config.js?v=数字` の数字を1つ上げる。上げないと、古い `config.js` を持っている人のページが動かない。
+
 ## ファイル
 
 - `index.html`：計算機の画面
