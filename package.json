@@ -2,7 +2,7 @@
   "name": "kaimawari-calc",
   "private": true,
   "scripts": {
-    "test": "node --test test/calc.test.js test/spu.test.js test/tax.test.js test/point.test.js test/check-campaign.test.mjs",
+    "test": "node --test test/calc.test.js test/spu.test.js test/tax.test.js test/point.test.js test/discount.test.js test/check-campaign.test.mjs",
     "check-campaign": "node scripts/check-campaign.mjs"
   }
 }

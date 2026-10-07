@@ -39,6 +39,17 @@ window.SITE_CONFIG = {
     defaults: { price: 1980, method: "rate", rate: 1, unitYen: 200, pointsPerUnit: 1, yenPerPoint: 1 },
     rateDigits: 2
   },
+  // 割引の計算（/discount）。defaults は初めて開いたときの入力例で、coupons の数がクーポン欄の数になる。type は "none" | "percent" | "yen"
+  discount: {
+    defaults: {
+      price: 10000,
+      coupons: [{ type: "percent", value: 20 }, { type: "percent", value: 10 }, { type: "none", value: 0 }],
+      original: 2980,
+      sale: 1980
+    },
+    rateDigits: 2,
+    wariDigits: 1
+  },
   campaigns: {
     // お買い物マラソン（2026年10月4日〜9日開催分の公式ページで確認）
     marathon: {

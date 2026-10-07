@@ -1,13 +1,15 @@
 {
   "feature_slug": "tool-hub",
   "task_type": "feature",
-  "current_stage": "unit",
+  "current_stage": "done",
   "round_counts": {
     "prd": 0,
     "architecture": 0,
     "unit": {
       "tax": 3,
-      "point": 5
+      "point": 5,
+      "discount": 2,
+      "config-cache": 1
     },
     "integration": 0,
     "full": 0

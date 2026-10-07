@@ -89,6 +89,10 @@
 
 ### discount.js
 
+金额上限是 `Number.MAX_SAFE_INTEGER`，超过的按上限算，先舍去小数成整数日元；折扣率限制在 0–100。小数折扣率按十进制写法拆成整数再算，不因浮点误差差 1 円。
+
+页面除了显示 `applyCoupons` 的结果，还做两件事：两张以上 %OFF 券时提示「合计不是简单相加」；把券的顺序倒过来再算一次，结果不同就显示倒序的金额和差额。
+
 `priceAfterPercent(price: number, percentOff: number): number`
 - 处理：`floor(price*(100-percentOff)/100)`，`percentOff` 限制在 0–100。
 - 依赖：无外部依赖。
@@ -100,12 +104,12 @@
 - 验收：`(1980,500)=1480`；`(300,500)=0`。
 
 `discountRate(original: number, sale: number): {percentOff, wari, kake, saved}`
-- 处理：`saved = original - sale`；`percentOff = saved/original*100`；`wari = percentOff/10`；`kake = sale/original*10`。`original=0` 时全为 0；`sale > original` 时 `saved` 为负，照实返回。
+- 处理：`saved = original - sale`；`percentOff = saved*100/original`；`wari = percentOff/10`；`kake = sale*10/original`。`original=0` 时全为 0；`sale > original` 时 `saved` 为负，照实返回。
 - 依赖：无外部依赖。
 - 验收：`(2000,1500) → {25, 2.5, 7.5, 500}`；`(0,100) → 全 0`。
 
 `applyCoupons(price: number, coupons: Array<{type: "percent"|"yen", value: number}>): {steps: Array<{type, value, before, after}>, final, saved, percentOff}`
-- 处理：按数组顺序逐个套用；`value<=0` 的跳过。
+- 处理：按数组顺序逐个套用；`value<=0` 或 `type` 不是这两种的跳过。
 - 依赖：`priceAfterPercent`、`priceAfterYen`、`discountRate`。
 - 验收：`10000` 套 `20%` 再 `10%` → 7200，合计 28%；`10000` 先 `500 円` 再 `10%` → 8550；先 `10%` 再 `500 円` → 8500。
 
