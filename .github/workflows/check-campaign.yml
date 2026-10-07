@@ -1,0 +1,27 @@
+name: check-campaign
+on:
+  schedule:
+    - cron: "30 0 * * *"   # 毎日 9:30（日本時間）
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - id: check
+        run: node scripts/check-campaign.mjs
+      - if: steps.check.outputs.ok != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REASON: ${{ steps.check.outputs.reason }}
+        run: |
+          TITLE="お買い物マラソンの条件を確認：${REASON}"
+          if [ -z "$(gh issue list --state open --search "in:title \"${REASON}\"" --json number --jq '.[0].number')" ]; then
+            gh issue create --title "$TITLE" --body "公式ページ https://event.rakuten.co.jp/campaign/point-up/marathon/ と assets/config.js の campaign が一致しません。条件を確認し、config.js を直して再デプロイしてください。"
+          fi

@@ -1,5 +1,8 @@
 {
   "name": "kaimawari-calc",
   "private": true,
-  "scripts": { "test": "node --test test/calc.test.js" }
+  "scripts": {
+    "test": "node --test test/calc.test.js test/check-campaign.test.mjs",
+    "check-campaign": "node scripts/check-campaign.mjs"
+  }
 }
