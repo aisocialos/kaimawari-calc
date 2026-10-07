@@ -6,6 +6,8 @@
   const YEN_FIELDS = ["price", "original", "sale"];
   // クーポンの種類。none は「使わない」
   const TYPES = { none: "なし", percent: "%OFF", yen: "円引き" };
+  // 値の入力欄の刻み。%OFF は小数も入れられる
+  const STEPS = { none: "1", percent: "any", yen: "1" };
   const yen = (n) => n.toLocaleString("ja-JP") + "円";
   const pct = (n) => n.toFixed(CFG.rateDigits) + "%";
   const wari = (n) => n.toFixed(CFG.wariDigits);
@@ -49,7 +51,7 @@
     const percents = r.steps.filter((x) => x.type === "percent");
     if (percents.length > 1) {
       const sum = percents.reduce((a, x) => a + x.value, 0);
-      notes.push(`<p>${percents.map(couponLabel).join(" と ")} を重ねても、${pct(sum)}OFF にはなりません。前のクーポンを引いたあとの価格に次のクーポンがかかるためです。</p>`);
+      notes.push(`<p>${percents.map(couponLabel).join(" と ")} は、足して ${pct(sum)}OFF にするのではなく、1つずつ順に計算します。前のクーポンを引いたあとの価格に、次のクーポンがかかります。</p>`);
     }
     const reversed = D.applyCoupons(state.price, [...state.coupons].reverse());
     if (reversed.final !== r.final) {
@@ -89,7 +91,8 @@
       const valueEl = document.getElementById(`c-value-${i}`);
       typeEl.value = c.type;
       valueEl.value = c.value;
-      typeEl.addEventListener("input", (e) => { c.type = e.target.value; c.value = couponValue(c.type, valueEl.value); changed(); });
+      valueEl.step = STEPS[c.type];
+      typeEl.addEventListener("input", (e) => { c.type = e.target.value; valueEl.step = STEPS[c.type]; c.value = couponValue(c.type, valueEl.value); changed(); });
       valueEl.addEventListener("input", (e) => { c.value = couponValue(c.type, e.target.value); changed(); });
     });
   }
