@@ -12,6 +12,7 @@ Cloudflare Pages の `kaimawari-calc` プロジェクトへ、サイトのファ
 
 - `index.html`：計算機の画面
 - `assets/calc.js`：計算ロジック（純粋関数）。テストは `npm test`（Node 20 以上）
+- `tax.html`、`assets/tax.js`：消費税の税込・税抜換算（10%と8%）
 - `assets/config.js`：GoatCounter のコード、楽天アフィリエイトID、キャンペーン条件（上限・1店の条件・最大倍率）
 - `articles/`：解説記事2本
 - `privacy.html`：入力データ、アクセス解析、広告の扱い
