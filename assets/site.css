@@ -62,6 +62,7 @@ label { display: block; font-size: .82rem; color: var(--muted); }
 .find { margin-top: 24px; }
 .cta { display: inline-block; background: var(--accent); color: var(--accent-ink); text-decoration: none; border-radius: 6px; padding: 8px 14px; }
 .pr { font-size: .75rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.aff-banner { overflow-x: auto; margin: 8px 0; }
 .reads { padding-left: 1.2em; }
 .formula { font-family: ui-monospace, Menlo, monospace; font-size: .9rem; background: var(--chip); border-radius: 6px; padding: 10px 12px; overflow-x: auto; margin: 8px 0; }
 nav.crumb { font-size: .85rem; margin-bottom: 16px; }
