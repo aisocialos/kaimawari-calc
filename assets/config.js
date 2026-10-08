@@ -18,8 +18,8 @@ window.SITE_CONFIG = {
   rakutenAffiliateId: "5843df8f.74ff13c7.5843df90.cdf107b5",
   rakutenFindLink: "https://hb.afl.rakuten.co.jp/hgc/5843df8f.74ff13c7.5843df90.cdf107b5/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F1000%E5%86%86%E3%83%9D%E3%83%83%E3%82%AD%E3%83%AA%2B%E9%80%81%E6%96%99%E7%84%A1%E6%96%99%2F&link_type=text&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9",
   // 楽天カード・楽天モバイルの申込リンク。楽天アフィリエイトの管理画面で生成したものをそのまま入れる（編集禁止）。空なら公式ページへの通常リンク
-  rakutenCardLink: "",
-  rakutenMobileLink: "",
+  rakutenCardLink: "https://hb.afl.rakuten.co.jp/hsc/58504aa3.25808993.58504aa4.6ed13a04/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MTY3NDAxLCJhbXAiOmZhbHNlfQ%3D%3D",
+  rakutenMobileLink: "https://hb.afl.rakuten.co.jp/hsc/58504d18.ceb01cc5.58504aa4.6ed13a04/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NSwiYW1wIjpmYWxzZX0%3D",
   rakutenCardUrl: "https://www.rakuten-card.co.jp/",
   rakutenMobileUrl: "https://network.mobile.rakuten.co.jp/",
   // SPU（楽天市場の公式ページ 2026年7月1日更新分で確認）。楽天銀行の項目はポイントの計算方法を公式で確認できないため入れていないhttps://event.rakuten.co.jp/campaign/point-up/everyday/point/
