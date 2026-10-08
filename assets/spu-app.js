@@ -48,10 +48,22 @@
       ["mobile-link", CFG.rakutenMobileLink, CFG.rakutenMobileUrl, "mobile-click", "楽天モバイルの申し込みページへ", "楽天モバイルの公式ページを見る"],
     ];
     // 広告リンクが1本もなければ、広告の表示を出さない
-    const anyAd = LINKS.some((x) => Boolean(x[1]));
+    const BANNERS = { "card-link": CFG.rakutenCardBanner, "mobile-link": CFG.rakutenMobileBanner };
+    const anyAd = LINKS.some((x) => Boolean(x[1] || BANNERS[x[0]]));
     document.querySelectorAll("[data-spu-ad]").forEach((el) => { el.hidden = !anyAd; });
     for (const [id, link, url, ev, adText, plainText] of LINKS) {
       const a = document.getElementById(id);
+      const banner = BANNERS[id];
+      if (banner && !link) {
+        // 生成されたHTMLソースをそのまま差し込み、同じ行き先のテキストボタンは隠す
+        const box = document.querySelector(`[data-banner-for="${id}"]`);
+        box.insertAdjacentHTML("afterbegin", banner);
+        box.insertAdjacentHTML("beforeend", ' <span class="pr">PR</span>');
+        box.hidden = false;
+        box.addEventListener("click", (e) => { if (e.target.closest("a")) track(ev); });
+        a.parentElement.hidden = true;
+        continue;
+      }
       a.href = link || url;
       a.textContent = link ? adText : plainText;
       if (!link) a.rel = "noopener";

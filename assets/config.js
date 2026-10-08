@@ -20,6 +20,9 @@ window.SITE_CONFIG = {
   // 楽天カード・楽天モバイルの申込リンク。楽天アフィリエイトの管理画面で生成したものをそのまま入れる（編集禁止）。空なら公式ページへの通常リンク
   rakutenCardLink: "",
   rakutenMobileLink: "",
+  // バナー型で生成したHTMLソース。属性も含めて一切変更せず、そのままページに差し込む（ガイドラインで編集禁止）
+  rakutenCardBanner: `<a href="https://hb.afl.rakuten.co.jp/hsc/58504aa3.25808993.58504aa4.6ed13a04/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MTY3NDAxLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hsb/58504aa3.25808993.58504aa4.6ed13a04/?me_id=2101008&me_adv_id=167401&t=pict" border="0" style="margin:2px" alt="" title=""></a>`,
+  rakutenMobileBanner: `<a href="https://hb.afl.rakuten.co.jp/hsc/58504d18.ceb01cc5.58504aa4.6ed13a04/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NSwiYW1wIjpmYWxzZX0%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hsb/58504d18.ceb01cc5.58504aa4.6ed13a04/?me_id=2101065&me_adv_id=2377895&t=pict" border="0" style="margin:2px" alt="" title=""></a>`,
   rakutenCardUrl: "https://www.rakuten-card.co.jp/",
   rakutenMobileUrl: "https://network.mobile.rakuten.co.jp/",
   // SPU（楽天市場の公式ページ 2026年7月1日更新分で確認）。楽天銀行の項目はポイントの計算方法を公式で確認できないため入れていないhttps://event.rakuten.co.jp/campaign/point-up/everyday/point/
