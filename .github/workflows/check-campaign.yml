@@ -20,8 +20,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REASON: ${{ steps.check.outputs.reason }}
+        # gh CLI は自前 runner のイメージに入っていないので、curl と jq で GitHub API を直接呼ぶ（GitHub ホストの runner でも同じ動き）
         run: |
           TITLE="お買い物マラソンの条件を確認：${REASON}"
-          if [ -z "$(gh issue list --state open --search "in:title \"${REASON}\"" --json number --jq '.[0].number')" ]; then
-            gh issue create --title "$TITLE" --body "公式ページ https://event.rakuten.co.jp/campaign/point-up/marathon/ と assets/config.js の campaign が一致しません。条件を確認し、config.js を直して再デプロイしてください。"
+          BODY="公式ページ https://event.rakuten.co.jp/campaign/point-up/marathon/ と assets/config.js の campaign が一致しません。条件を確認し、config.js を直して再デプロイしてください。"
+          auth=(-H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json")
+          q="repo:${GITHUB_REPOSITORY} is:issue is:open in:title \"${REASON}\""
+          open=$(curl -fsS "${auth[@]}" -G "${GITHUB_API_URL}/search/issues" --data-urlencode "q=${q}" | jq '.total_count')
+          if [ "$open" = 0 ]; then
+            jq -n --arg t "$TITLE" --arg b "$BODY" '{title: $t, body: $b}' \
+              | curl -fsS "${auth[@]}" -X POST "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues" -d @- >/dev/null
           fi
