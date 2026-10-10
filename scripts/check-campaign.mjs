@@ -3,6 +3,8 @@ import { readFileSync, appendFileSync } from "node:fs";
 import vm from "node:vm";
 
 const PAGE_URL = "https://event.rakuten.co.jp/campaign/point-up/marathon/";
+// 開催が終わると公式ページは条件を消してこの文だけを出す。次回の告知が出るまでは比べるものがない
+const ENDED_TEXT = "お買い物マラソンは終了しました";
 
 export function readConfigCampaign(source) {
   const sandbox = { window: {} };
@@ -16,12 +18,14 @@ export function parsePage(html) {
   const periods = [...text.matchAll(/(\d{4})年(\d{1,2})月(\d{1,2})日\(.\)\s*(\d{1,2}:\d{2})\s*～\s*(\d{4})年(\d{1,2})月(\d{1,2})日\(.\)\s*(\d{1,2}:\d{2})/g)];
   const last = periods[periods.length - 1];
   return {
+    ended: text.includes(ENDED_TEXT),
     pointCap: cap ? Number(cap[1].replace(/,/g, "")) : null,
     period: last ? `${last[1]}-${last[2]}-${last[3]} ${last[4]} ～ ${last[5]}-${last[6]}-${last[7]} ${last[8]}` : null,
   };
 }
 
 export function compare(page, campaign) {
+  if (page.pointCap === null && page.ended) return { ok: true, reason: "開催期間外：公式ページは終了の案内のみ。次回の告知が出たら比べます" };
   if (page.pointCap === null) return { ok: false, reason: "公式ページから上限を読み取れませんでした（ページ構造が変わった可能性）" };
   if (page.pointCap !== campaign.pointCap) return { ok: false, reason: `上限が違います：公式 ${page.pointCap} / config ${campaign.pointCap}（期間 ${page.period}）` };
   return { ok: true, reason: `一致：上限 ${page.pointCap}（期間 ${page.period}）` };
