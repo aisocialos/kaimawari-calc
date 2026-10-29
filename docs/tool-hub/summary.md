@@ -53,4 +53,4 @@
 - 代理数据用 GoatCounter（站点码 salon-roi，路径前缀 `/kaimawari-calc`）。2026-10-07 至 10-30：`/tax`、`/point`、`/discount` 访问都是 0；整站 28 次，最后一次在 10-12。
 - 统计链路实测是通的：本机 Chrome 打开线上 4 个页面，都发出了 `/kaimawari-calc/<路径>` 的计数请求（实测时拦下没计入）；同一站点码下 `/bidguard` 到 10-29 还在计数。所以 0 是没人来，不是统计坏了。
 - 代理数据判断不了展示次数过没过 100：展示 100 次、点击率 1% 时，0 次点击的概率约 37%。原门槛「展示不到 100 次」要等拿到 Search Console 权限后才能核对。
-- 不用等时间的补法：用有权限的账号打开 Search Console，或给本账号做 fynexus.com 的 DNS 验证。
+- 要拿真实展示次数：用有权限的账号打开 Search Console，或给本账号做 fynexus.com 的 DNS 验证。验证前的数据能不能看到，未核实。
