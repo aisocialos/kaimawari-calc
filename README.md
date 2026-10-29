@@ -21,6 +21,7 @@ Cloudflare Pages の `kaimawari-calc` プロジェクトへ、サイトのファ
 - `assets/config.js`：GoatCounter のコード、楽天アフィリエイトID、キャンペーン条件（上限・1店の条件・最大倍率）
 - `articles/`：解説記事2本
 - `privacy.html`：入力データ、アクセス解析、広告の扱い
+- `404.html`：存在しないURLで返すページ（Cloudflare Pages が状態コード404で返す）。読み込むファイルとリンクはルートからの絶対パス
 
 ## キャンペーン条件の更新
 
