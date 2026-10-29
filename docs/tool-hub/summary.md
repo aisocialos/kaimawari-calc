@@ -47,10 +47,10 @@
 
 ## 工具页流量判定（2026-10-30，代理数据）
 
-结论：三个工具都按「不到 100 次」处理，不再为这一类加工具。
+结论：不再为这一类加工具。依据是三个工具 23 天 0 访问，不是 Search Console 的展示次数。
 
-- Search Console 读不到：用户 Google 账号下 `sc-domain:fynexus.com` 和 `https://kaimawari.fynexus.com/` 两个资源都显示「您无权访问此资源」，站点没做所有权验证。
+- Search Console 读不到：用户 Google 账号打开 `sc-domain:fynexus.com` 和 `https://kaimawari.fynexus.com/` 两个资源，都显示「您无权访问此资源」。这个账号没有权限；有没有别的账号验证过，不知道。
 - 代理数据用 GoatCounter（站点码 salon-roi，路径前缀 `/kaimawari-calc`）。2026-10-07 至 10-30：`/tax`、`/point`、`/discount` 访问都是 0；整站 28 次，最后一次在 10-12。
 - 统计链路实测是通的：本机 Chrome 打开线上 4 个页面，都发出了 `/kaimawari-calc/<路径>` 的计数请求（实测时拦下没计入）；同一站点码下 `/bidguard` 到 10-29 还在计数。所以 0 是没人来，不是统计坏了。
-- 推断：展示 100 次以上时，按 1% 点击率也会有约 1 次访问；23 天 0 访问，展示不到 100 次的可能性大。这是推断，不是 Search Console 的读数。
-- 只能靠验证补上的：要拿到真实展示次数，先在 Search Console 给 fynexus.com 做 DNS 验证。验证后能不能看到验证前的数据，没核实。
+- 代理数据判断不了展示次数过没过 100：展示 100 次、点击率 1% 时，0 次点击的概率约 37%。原门槛「展示不到 100 次」要等拿到 Search Console 权限后才能核对。
+- 不用等时间的补法：用有权限的账号打开 Search Console，或给本账号做 fynexus.com 的 DNS 验证。
