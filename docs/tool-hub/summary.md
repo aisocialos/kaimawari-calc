@@ -54,3 +54,13 @@
 - 统计链路实测是通的：本机 Chrome 打开线上 4 个页面，都发出了 `/kaimawari-calc/<路径>` 的计数请求（实测时拦下没计入）；同一站点码下 `/bidguard` 到 10-29 还在计数。所以 0 是没人来，不是统计坏了。
 - 代理数据判断不了展示次数过没过 100：展示 100 次、点击率 1% 时，0 次点击的概率约 37%。原门槛「展示不到 100 次」要等拿到 Search Console 权限后才能核对。
 - 要拿真实展示次数：用有权限的账号打开 Search Console，或给本账号做 fynexus.com 的 DNS 验证。验证前的数据能不能看到，未核实。
+
+## 工具页流量复核（2026-11-06，上线满 4 周后）
+
+结论不变：不再为这一类加工具。Search Console 的展示次数仍读不到，门槛里的数字没核对成。
+
+- GoatCounter 10-06 至 11-06：`/tax`、`/point`、`/discount`、`/supersale` 在 GoatCounter 里没有路径记录，一次计数都没有。整站 41 次（首页 23、`/spu-card` 13、5 篇文章各 1），最后一次在 10-12，此后 25 天为 0。
+- 统计链路今天复测是通的：本机 Chrome 打开首页和三个工具页，页面浏览请求路径正确，改输入后 `tax-edit`、`point-edit`、`discount-edit` 事件请求都发出（请求被拦下，没计入）。
+- 没有事件记录：GoatCounter 路径表共 12 个，没有任何事件路径，联盟点击也是 0。
+- Search Console：本机 Chrome 只登录 charmpocketapp@gmail.com，这个账号名下没有任何资源，打开 `sc-domain:fynexus.com` 显示无权访问。当初添加 fynexus.com 的是哪个 Google 账号，会话里查不到。
+- 要拿到展示次数，需要用户用添加过 fynexus.com 的账号打开 Search Console 的效果报告，或在资源设置里给 charmpocketapp@gmail.com 加权限。不需要为此新增 DNS 记录。
