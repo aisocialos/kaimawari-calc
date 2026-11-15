@@ -63,6 +63,13 @@
 
 - GoatCounter 10-06 至 11-06：`/tax`、`/point`、`/discount`、`/supersale` 没有路径记录，一次计数都没有。整站 41 次（首页 23、`/spu-card` 13、5 篇文章各 1），最后一次在 10-12，此后 25 天为 0。
 - 统计链路今天复测是通的。本机 Chrome 打开首页和三个工具页，浏览请求的路径都对。改输入后，`tax-edit`、`point-edit`、`discount-edit` 事件请求都发出。请求被拦下，没计入。
-- 没有事件记录：GoatCounter 路径表共 12 个，没有任何事件路径，联盟点击也是 0。
+- 没有访客事件：全站唯一的事件路径是 `lookout-selftest`（lookout 会话 10-12 的自测，1 次）。联盟点击和三个 `*-edit` 事件都没有记录。11-06 写的「没有任何事件路径」没核对全，这里更正。
 - Search Console：本机 Chrome 只登录 charmpocketapp@gmail.com。这个账号名下没有任何资源，打开 `sc-domain:fynexus.com` 显示无权访问。当初添加 fynexus.com 的 Google 账号，会话里查不到。
 - 展示次数不再追：判定已用访问数做完。以后要看，得有早已添加过 fynexus.com 的账号；有没有这样的账号，不知道。新加资源只从添加那天起收集数据。
+
+### 2026-11-16 再查
+
+结论不变。Search Console 仍读不到：本机 Chrome 登录的 charmpocketapp@gmail.com 没有权限。
+
+- GoatCounter 10-06 至 11-16：整站 43 次，比 11-06 多 2 次（首页 1、`/articles/cap` 1），最后一次在 11-14。
+- 三个工具页和 `/supersale` 仍没有路径记录，一次计数都没有。
